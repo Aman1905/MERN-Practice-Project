@@ -7,9 +7,14 @@ dotenv.config({path: './config.env'})
 
 // database connection
 require('./db/conn')
+const User = require('./models/userSchema');
+
 const PORT = process.env.PORT;
 
 // Middleware
+app.use(express.json());
+app.use(require('./router/auth'))
+
 const middleware = (req, res, next) => {
     console.log("Hello from Middleware");
     next();
